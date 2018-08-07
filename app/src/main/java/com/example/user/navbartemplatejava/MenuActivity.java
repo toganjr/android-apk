@@ -1,6 +1,7 @@
 package com.example.user.navbartemplatejava;
 
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,6 +19,10 @@ import android.view.MenuItem;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static String menufrom;
+
+    public static Intent startIntent(Context context){
+        return new Intent(context, MenuActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -40,7 +40,7 @@
             android:textSize="26sp" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/text_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -65,18 +65,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/password"
+            android:layout_alignStart="@+id/text_password"
             android:layout_marginTop="65dp"
             android:text="ONLINE NCR"
             android:textColor="@android:color/black"
             android:textSize="36sp" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/text_nip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/password"
+            android:layout_alignStart="@+id/text_password"
             android:layout_marginBottom="211dp"
             android:ems="10"
             android:inputType="number"
