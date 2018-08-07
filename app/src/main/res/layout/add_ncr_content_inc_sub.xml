@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/textView11"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="14dp"
+                android:text="Nama Produk/Proses" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="70dp"
+            android:text="Nama/Kode Proyek" />
+
+        <Spinner
+            android:id="@+id/noPO1"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/textView18" />
+
+        <Spinner
+            android:id="@+id/proyek"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="109dp"
+            android:text="Nama Vendor" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="162dp"
+            android:text="Nomor PO" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="520dp"
+            android:text="Kategori Ketidaksesuaian" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="235dp"
+            android:text="Uraian Ketidaksuaian" />
+
+        <EditText
+            android:id="@+id/inputnoPO2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/noPO1"
+            android:ems="10"
+            android:hint="isi Nomor PO"
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/inputPIC"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/text_view_PIC"
+            android:layout_alignParentEnd="true"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/inputvendor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView17"
+            android:layout_alignParentEnd="true"
+            android:ems="10"
+            android:hint="isi Nama Vendor"
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/inputproduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:textSize="14sp" />
+
+        <Spinner
+            android:id="@+id/kat_ketidaksuaian"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="547dp" />
+
+        <TextView
+            android:id="@+id/PIC2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="640dp"
+            android:text="Ambil Gambar"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_view_PIC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="599dp"
+            android:text="Person in Charge"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/registerncr"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="1019dp"
+            android:text="Registrasi" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="899dp"
+            android:text="Disposisi Inspektor" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="97dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView11"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="963dp"
+            android:text="Target Tanggal Penyelesaian" />
+
+        <EditText
+            android:id="@+id/inputtanggal_penyelesaian"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/noPO1"
+            android:layout_alignTop="@+id/textView14"
+            android:ems="10"
+            android:textSize="14sp"
+            android:inputType="date" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="306dp"
+            android:layout_height="234dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="659dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <Spinner
+            android:id="@+id/dis_inspektor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="927dp" />
+
+        <EditText
+            android:id="@+id/inputreport"
+            android:layout_width="match_parent"
+            android:layout_height="255dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView9"
+            android:layout_weight="1"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="10" />
+
+    </RelativeLayout>
+
+</ScrollView>
