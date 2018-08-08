@@ -3,6 +3,7 @@ package com.example.user.navbartemplatejava;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -58,19 +59,20 @@ public class LoginActivity extends AppCompatActivity {
                 .signIn(mUsername.getText().toString(), mPassword.getText().toString());
         call.enqueue(new Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 Log.d(TAG, "login : onResponse");
                 if (response.isSuccessful()){
                     mPrefs.setUserIsSignIn(true);
                     mPrefs.setUserSignIn(response.body().getUser());
                     mPrefs.setUserSignInToken(response.body().getToken());
+                    onNextActivity();
                 }else{
                     Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "login : onFailure");
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
             }

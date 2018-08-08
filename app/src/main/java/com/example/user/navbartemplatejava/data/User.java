@@ -1,4 +1,9 @@
 package com.example.user.navbartemplatejava.data;
 
-public class User {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class User implements Serializable{
+
 }
