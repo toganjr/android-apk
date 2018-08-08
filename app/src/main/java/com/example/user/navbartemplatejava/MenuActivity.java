@@ -39,18 +39,19 @@ public class MenuActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (menufrom == null){
-        setContentView(R.layout.activity_main);
+            setContentView(R.layout.activity_main);
         } else if (menufrom == "regNCR"){
-        Intent in = new Intent (MenuActivity.this, regNCRActivity.class);
-        startActivity(in);
+            setContentView();
+            Intent in = new Intent (MenuActivity.this, regNCRActivity.class);
+            startActivity(in);
         } else if (menufrom == "profile") {
-        setContentView(R.layout.activity_prof);
+            setContentView(R.layout.activity_prof);
         }
         mPrefs = ((InkaApp)  getApplication()).getPrefs();
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
