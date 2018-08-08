@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -15,10 +16,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.user.navbartemplatejava.data.network.ApiClient;
+import com.example.user.navbartemplatejava.data.network.AuthInterface;
+import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private static String menufrom;
+    PreferencesHelper mPrefs;
 
     public static Intent startIntent(Context context){
         return new Intent(context, MenuActivity.class);
@@ -35,6 +46,7 @@ public class MenuActivity extends AppCompatActivity
         } else if (menufrom == "profile") {
         setContentView(R.layout.activity_prof);
         }
+        mPrefs = ((InkaApp)  getApplication()).getPrefs();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -73,8 +85,11 @@ public class MenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.btn_logout) {
+            mPrefs.setUserSignInToken("");
+            mPrefs.setUserSignIn(null);
+            mPrefs.setUserIsSignIn(false);
+            openLoginActivity();
         }
 
         return super.onOptionsItemSelected(item);
@@ -101,5 +116,10 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void openLoginActivity(){
+        startActivity(LoginActivity.startIntent(this));
+        finish();
     }
 }
