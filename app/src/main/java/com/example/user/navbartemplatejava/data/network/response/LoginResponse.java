@@ -4,7 +4,9 @@ import com.example.user.navbartemplatejava.data.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class LoginResponse {
+import java.io.Serializable;
+
+public class LoginResponse implements Serializable {
     @SerializedName("user")
     @Expose
     private User user;

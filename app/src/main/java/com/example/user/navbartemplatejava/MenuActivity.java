@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity
         if (menufrom == null){
             setContentView(R.layout.activity_main);
         } else if (menufrom == "regNCR"){
-            setContentView();
+            //setContentView();
             Intent in = new Intent (MenuActivity.this, regNCRActivity.class);
             startActivity(in);
         } else if (menufrom == "profile") {
