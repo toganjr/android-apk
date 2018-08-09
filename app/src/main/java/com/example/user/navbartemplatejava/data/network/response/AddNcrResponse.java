@@ -1,4 +1,4 @@
-package com.example.user.navbartemplatejava.data.network;
+package com.example.user.navbartemplatejava.data.network.response;
 
 import com.example.user.navbartemplatejava.data.NcrRegistration;
 import com.google.gson.annotations.Expose;

@@ -1,5 +1,7 @@
 package com.example.user.navbartemplatejava.data.network;
 
+import com.example.user.navbartemplatejava.data.network.response.LoginResponse;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -10,7 +12,4 @@ public interface AuthInterface {
     @FormUrlEncoded
     @POST("api/login")
     Call<LoginResponse> signIn(@Field("nip") String nip, @Field("password") String password);
-
-    @POST("api/logout")
-    Call<Void> signOut(@Header("Authorization") String token);
 }

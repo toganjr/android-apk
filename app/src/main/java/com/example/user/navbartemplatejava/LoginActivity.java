@@ -2,7 +2,6 @@ package com.example.user.navbartemplatejava;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.user.navbartemplatejava.data.network.ApiClient;
 import com.example.user.navbartemplatejava.data.network.AuthInterface;
-import com.example.user.navbartemplatejava.data.network.LoginResponse;
+import com.example.user.navbartemplatejava.data.network.response.LoginResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
 
 import retrofit2.Call;

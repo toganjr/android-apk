@@ -1,6 +1,16 @@
 package com.example.user.navbartemplatejava.data;
 
-public class IncompatibilityCategory {
-    Integer id;
-    String description;
+import java.io.Serializable;
+
+public class IncompatibilityCategory implements Serializable{
+    private Integer id;
+    private String description;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
