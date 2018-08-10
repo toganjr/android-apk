@@ -22,9 +22,10 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".regNCRActivity" />
+        <activity android:name=".AddNcrActivity"/>
         <activity android:name=".viewregNCRActivity" />
-        <activity android:name=".addNCRActivity" />
         <activity android:name=".SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

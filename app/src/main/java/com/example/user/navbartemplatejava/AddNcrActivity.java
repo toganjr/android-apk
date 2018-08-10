@@ -19,7 +19,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-public class addNCRActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddNcrActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int RESULT_LOAD_IMAGE = 1;
 
     Spinner spinner1;
@@ -55,7 +55,7 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         registerncr = (Button) findViewById(R.id.registerncr);
         registerncr.setOnClickListener(new register());
 
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         inputnoPO2 = findViewById(R.id.inputnoPO2);
         inputPIC = findViewById(R.id.inputPIC);
@@ -66,13 +66,13 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    private boolean validatenoPO(){
+    private boolean validatenoPO() {
         String noPO = inputnoPO2.getText().toString().trim();
 
-        if (noPO.isEmpty()){
+        if (noPO.isEmpty()) {
             inputnoPO2.setError("tidak boleh kosong");
             return false;
-        } else if (noPO.length() != 8){
+        } else if (noPO.length() != 8) {
             inputnoPO2.setError("harus 8 digit");
             return false;
         } else {
@@ -81,7 +81,7 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private boolean validatePIC(){
+    private boolean validatePIC() {
         String PIC = inputPIC.getText().toString().trim();
 
         if (PIC.isEmpty()) {
@@ -93,10 +93,10 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private boolean validatevendor(){
+    private boolean validatevendor() {
         String vendor = inputvendor.getText().toString().trim();
 
-        if (vendor.isEmpty()){
+        if (vendor.isEmpty()) {
             inputvendor.setError("tidak boleh kosong");
             return false;
         } else {
@@ -105,10 +105,10 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private boolean validateproduk(){
+    private boolean validateproduk() {
         String produk = inputproduk.getText().toString().trim();
 
-        if (produk.isEmpty()){
+        if (produk.isEmpty()) {
             inputproduk.setError("tidak boleh kosong");
             return false;
         } else {
@@ -117,10 +117,10 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private boolean validatetanggal_penyelesaian(){
+    private boolean validatetanggal_penyelesaian() {
         String tanggal_penyelesaian = inputtanggal_penyelesaian.getText().toString().trim();
 
-        if (tanggal_penyelesaian.isEmpty()){
+        if (tanggal_penyelesaian.isEmpty()) {
             inputtanggal_penyelesaian.setError("tidak boleh kosong");
             return false;
         } else {
@@ -129,10 +129,10 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private boolean validatereport(){
+    private boolean validatereport() {
         String report = inputreport.getText().toString().trim();
 
-        if (report.isEmpty()){
+        if (report.isEmpty()) {
             inputreport.setError("tidak boleh kosong");
             return false;
         } else {
@@ -144,21 +144,21 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
     class register implements Button.OnClickListener {
         @Override
         public void onClick(View v) {
-            if (!validatenoPO() | !validatePIC() | !validateproduk() | !validatereport() | !validatetanggal_penyelesaian() | !validatevendor()){
+            if (!validatenoPO() | !validatePIC() | !validateproduk() | !validatereport() | !validatetanggal_penyelesaian() | !validatevendor()) {
                 return;
             }
         }
     }
 
-    void getLocation(){
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
+    void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) !=
                 PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},REQUEST_LOCATION);
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
-            if (location != null){
+            if (location != null) {
                 double latti = location.getLatitude();
                 double longi = location.getLongitude();
             }
@@ -166,14 +166,14 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v){
+    public void onClick(View v) {
 
     }
 
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_LOCATION:
                 getLocation();
                 break;
@@ -183,19 +183,18 @@ public class addNCRActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAN_REQUEST){
+        if (requestCode == CAN_REQUEST) {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imageView2.setImageBitmap(bitmap);
             getLocation();
         }
     }
 
-    class takePhoto implements  Button.OnClickListener{
+    class takePhoto implements Button.OnClickListener {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent,CAN_REQUEST);
+            startActivityForResult(intent, CAN_REQUEST);
         }
     }
-
 }

@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class NcrRegistration implements Serializable {
+
     private Integer id;
     @SerializedName("no_reg_ncr")
     @Expose
@@ -62,10 +63,12 @@ public class NcrRegistration implements Serializable {
     @SerializedName("publish_date")
     @Expose
     private Date publishDate;
+
     @SerializedName("lat")
     @Expose
     private Double latitude;
     @SerializedName("long")
+
     @Expose
     private Double longitude;
     @SerializedName("completion_target")
@@ -220,5 +223,6 @@ public class NcrRegistration implements Serializable {
 
     public Product getProduct() {
         return product;
+
     }
 }

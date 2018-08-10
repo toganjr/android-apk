@@ -64,4 +64,5 @@ public interface NcrRegInterface {
                                       @Part("long") Double longitude,
                                       @Path("id") Integer id,
                                       @Header("Authorization") String token);
+
 }

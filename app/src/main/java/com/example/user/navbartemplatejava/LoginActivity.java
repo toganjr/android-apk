@@ -43,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login();
+                //onNextActivity();
+               login();
             }
         });
     }
@@ -59,14 +60,17 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-                Log.d(TAG, "login : onResponse");
+                Log.d(TAG, "login : onResponse" );
                 if (response.isSuccessful()){
-                    mPrefs.setUserIsSignIn(true);
-                    mPrefs.setUserSignIn(response.body().getUser());
+                  mPrefs.setUserIsSignIn(true);
+                   mPrefs.setUserSignIn(response.body().getUser());
                     mPrefs.setUserSignInToken(response.body().getToken());
-                    onNextActivity();
+                    Toast.makeText(LoginActivity.this, "Login Failed onRespon entut", Toast.LENGTH_SHORT).show();
+
+                      onNextActivity();
                 }else{
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Login Failed onRespon", Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -74,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "login : onFailure : " + t.getMessage());
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
