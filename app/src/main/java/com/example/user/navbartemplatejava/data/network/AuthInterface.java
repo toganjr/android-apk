@@ -10,6 +10,6 @@ import retrofit2.http.POST;
 
 public interface AuthInterface {
     @FormUrlEncoded
-    @POST("api/login")
+    @POST("api/activity_login")
     Call<LoginResponse> signIn(@Field("nip") String nip, @Field("password") String password);
 }

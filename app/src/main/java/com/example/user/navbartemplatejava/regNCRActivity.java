@@ -32,7 +32,7 @@ public class regNCRActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     public static regNCRActivity regNCRActivity;
     PreferencesHelper mPreferencesHelper;
-    private ArrayList<exampleItem> mExampleList;
+    private ArrayList <exampleItem> mExampleList;
     private Button btnTambahNcr;
     private AdapterNcrRegistration mAdapterNcrRegistration;
 
@@ -48,32 +48,62 @@ public class regNCRActivity extends AppCompatActivity {
         mNcrRegInterface = ApiClient.getRetrofit().create(NcrRegInterface.class);
         mPreferencesHelper = ((InkaApp) getApplication()).getPrefs();
         btnTambahNcr = findViewById(R.id.btn_tambah_ncr);
+        createExampleList();
 
 
-
+    }
+    //method for put item in RecycleView for example
+    public void createExampleList(){
+        mExampleList = new ArrayList<>();
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
+        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        Call<BrowseNcrResponse> call = mNcrRegInterface.browseNcr(mPreferencesHelper.getUserSignInToken());
 
-        call.enqueue(new Callback<BrowseNcrResponse>() {
-            @Override
-            public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
-                List<NcrRegistration> ncrRegistrations = response.body().getNcr();
-                mAdapter = new AdapterNcrRegistration(ncrRegistrations);
-                mRecyclerView.setAdapter(mAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<BrowseNcrResponse> call, Throwable t) {
-                Log.e("Retrofit Get",t.toString());
-            }
-        });
+        //for test Example RecycleView
+        mAdapter = new AdapterNcrRegistration(mExampleList);
+        mRecyclerView.setAdapter(mAdapter);
 
 
+//        Call<BrowseNcrResponse> call = mNcrRegInterface.browseNcr(mPreferencesHelper.getUserSignInToken());
+//
+//        call.enqueue(new Callback<BrowseNcrResponse>() {
+//            @Override
+//            public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
+//                List<NcrRegistration> ncrRegistrations = response.body().getNcr();
+//                mAdapter = new AdapterNcrRegistration(ncrRegistrations);
+//                mRecyclerView.setAdapter(mAdapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BrowseNcrResponse> call, Throwable t) {
+//                Log.e("Retrofit Get",t.toString());
+//            }
+//        });
+//
+//
 
     }
 

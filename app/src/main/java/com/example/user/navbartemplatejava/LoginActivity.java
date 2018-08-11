@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
 
         btnLogin = findViewById(R.id.login);
         mUsername = findViewById(R.id.text_nip);
@@ -43,14 +43,14 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //onNextActivity();
-               login();
+                onNextActivity();
+             //  login();
             }
         });
     }
 
     public void login(){
-        Log.d(TAG, "login");
+        Log.d(TAG, "activity_login");
         if (mUsername.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()){
             Toast.makeText(this, "Please complete the form", Toast.LENGTH_SHORT).show();
         }
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-                Log.d(TAG, "login : onResponse" );
+                Log.d(TAG, "activity_login : onResponse" );
                 if (response.isSuccessful()){
                   mPrefs.setUserIsSignIn(true);
                    mPrefs.setUserSignIn(response.body().getUser());
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-                Log.d(TAG, "login : onFailure : " + t.getMessage());
+                Log.d(TAG, "activity_login : onFailure : " + t.getMessage());
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
 
             }

@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class viewregNCRActivity extends AppCompatActivity {
+public class ViewItemNcrReg extends AppCompatActivity {
     private ArrayList<exampleItem> mExampleList;
 
     private RecyclerView mRecyclerView;
@@ -18,4 +18,6 @@ public class viewregNCRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_content_regncr);
     }
+
+
 }

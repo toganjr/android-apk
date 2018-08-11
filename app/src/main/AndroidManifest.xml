@@ -23,7 +23,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".regNCRActivity" />
         <activity android:name=".AddNcrActivity"/>
-        <activity android:name=".viewregNCRActivity" />
+        <activity android:name=".ViewItemNcrReg" />
         <activity android:name=".SplashActivity">
 
             <intent-filter>
