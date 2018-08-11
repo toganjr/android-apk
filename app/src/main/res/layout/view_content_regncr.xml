@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -33,9 +32,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/getNoNcr"
                     android:layout_width="211dp"
                     android:layout_height="38dp"
-                    android:text="XYN/12-ASD/12/2018"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>
@@ -62,9 +61,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/getNamaInspector"
                     android:layout_width="211dp"
                     android:layout_height="45dp"
-                    android:text="Tester beta 01"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>
@@ -93,7 +92,6 @@
                 <TextView
                     android:layout_width="211dp"
                     android:layout_height="45dp"
-                    android:text="12/09/2018"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>
@@ -120,9 +118,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/getNamaProses"
                     android:layout_width="211dp"
                     android:layout_height="86dp"
-                    android:text="Barang pengangkut hasil tembaga"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>
@@ -149,10 +147,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/getUnit"
                     android:layout_width="201dp"
                     android:layout_height="86dp"
-                    android:text="Unit pengaduan pelayanan barang dan jasa"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>
@@ -179,9 +176,9 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/getKodeProjek"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
-                    android:text="NP1123"
                     android:textColor="@android:color/black"
                     android:textSize="20sp" />
             </TableRow>

@@ -43,32 +43,40 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
 
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
 //for Test Example RecycleView
-        holder.mNoNcr.setText(mExampleItems.get(position).getText1());
-        holder.mNamaProses.setText(mExampleItems.get(position).getText2());
-
-        holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
-
-                v.getContext().startActivity(intent);
-            }
-        });
-
-//for Get No NCR and Name Process
+//        holder.mNoNcr.setText(mExampleItems.get(position).getText1());
+//        holder.mNamaProses.setText(mExampleItems.get(position).getText2());
 //
-//        holder.mNoNcr.setText(mListNcrDisplay.get(position).getNoRegNcr());
-//        holder.mNamaProses.setText(mListNcrDisplay.get(position).getProcessName());
 //        holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
+//                intent.putExtra("xxx",mExampleItems.get(position).getText1());
+//                intent.putExtra("yyy",mExampleItems.get(position).getText2());
 //                v.getContext().startActivity(intent);
 //            }
 //        });
+
+//for Get No NCR and Name Process
+
+        holder.mNoNcr.setText(mListNcrDisplay.get(position).getNoRegNcr());
+        holder.mNamaProses.setText(mListNcrDisplay.get(position).getProcessName());
+        holder.mNamaInspector.setText(mListNcrDisplay.get(position).getReferenceInspection());
+        holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
+                        intent.putExtra("No Registration NCR",mListNcrDisplay.get(position).getNoRegNcr());
+                        intent.putExtra("Nama Proses",mListNcrDisplay.get(position).getProcessName());
+                        intent.putExtra("Nama Inspector",mListNcrDisplay.get(position).getReferenceInspection());
+                        intent.putExtra("Unit",mListNcrDisplay.get(position).getUiCodeId());
+                        intent.putExtra("Kode Projek",mListNcrDisplay.get(position).getProject().getProjectCode());
+                v.getContext().startActivity(intent);
+
+            }
+        });
 
 
     }
@@ -85,6 +93,9 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView mNoNcr;
         public TextView mNamaProses;
+        public TextView mNamaInspector;
+        public TextView mUnit;
+        public TextView mKodeProjek;
 
 
 
@@ -92,7 +103,9 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
             super(itemView);
             mNoNcr = itemView.findViewById(R.id.displayNoNcr);
             mNamaProses = itemView.findViewById(R.id.displayNamaProses);
-
+            mNamaInspector = itemView.findViewById(R.id.getNamaInspector);
+            mUnit = itemView.findViewById(R.id.getUnit);
+            mKodeProjek = itemView.findViewById(R.id.getKodeProjek);
 
 
 
