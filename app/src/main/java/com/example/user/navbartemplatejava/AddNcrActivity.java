@@ -1,17 +1,16 @@
 package com.example.user.navbartemplatejava;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.IBinder;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -36,7 +35,7 @@ import com.example.user.navbartemplatejava.data.network.NcrRegInterface;
 import com.example.user.navbartemplatejava.data.network.response.AddFormResponse;
 import com.example.user.navbartemplatejava.data.network.response.AddNcrResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
-import com.example.user.navbartemplatejava.service.LocationService;
+import com.example.user.navbartemplatejava.util.NetworkUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +43,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -87,26 +85,9 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
     //register
     private Button registerncr;
     AddFormResponse formData;
-    private LocationService mLocationService;
-    private boolean mLocationServiceBound = false;
-    private Intent mLocationServiceIntent;
     PreferencesHelper mPrefs;
-    private ServiceConnection mLocationServiceConnection = new ServiceConnection(){
-        @Override
-        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Log.d(TAG, "onServiceConnected");
-            LocationService.ServiceBinder binder = (LocationService.ServiceBinder) iBinder;
-            mLocationService = binder.getService();
-            mLocationServiceBound = true;
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName componentName) {
-            Log.d(TAG, "onServiceDisconnected");
-            mLocationServiceBound = false;
-        }
-
-    };
+    Double latitude;
+    Double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +116,22 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         mPrefs = ((InkaApp) getApplication()).getPrefs();
         inputreport = findViewById(R.id.inputreport);
         inputtanggal_penyelesaian.setOnClickListener(this);
-        mLocationServiceIntent = new Intent(this, LocationService.class);
         formData = (AddFormResponse) getIntent().getSerializableExtra("data");
         initDateTimePickerDialog();
+        if (!NetworkUtils.isGpsAvailable(this) || !NetworkUtils.isNetworkConnected(this)) {
+            new AlertDialog.Builder(this)
+                    .setCancelable(false)
+                    .setMessage("Gps is disabled & No connection or connection missing")
+                    .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                            finish();
+                        }
+                    })
+                    .create()
+                    .show();
+        }
     }
 
     protected void initDateTimePickerDialog(){
@@ -159,15 +153,6 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         super.onStart();
         Log.d(TAG, "onStart");
         setSpinners();
-        if (!mLocationServiceBound){
-            Log.d(TAG, "onStart : bindService : "+mLocationServiceBound);
-            bindService(mLocationServiceIntent, mLocationServiceConnection, Context.BIND_AUTO_CREATE);
-        }
-        // Checking if service of feature asset has bound or not
-        if (mLocationServiceBound && mLocationService.isAvailableLocation()) {
-            Log.d(TAG, "Latitude: " + mLocationService.getLatitude());
-            Log.d(TAG, "Longitude: " + mLocationService.getLongitude());
-        }
     }
 
     protected void setSpinners(){
@@ -315,7 +300,9 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
 
     public void postNcrRegister(){
         Log.d(TAG, "postNcrRegister");
-        File file = new File(filePath.getPath());
+        getLocation();
+        File file = new File(filePath.toString());
+        Log.d(TAG, filePath.getPath());
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image = MultipartBody.Part.createFormData("file_bukti[]", file.getName(), reqFile);
         Call<AddNcrResponse> call = ApiClient.getRetrofit().create(NcrRegInterface.class).addNcr(
@@ -330,13 +317,13 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
                 image,
                 ((DispositionInspector) mDisposSpinner.getSelectedItem()).getId(),
                 tanggalPenyelesaian,
-                mLocationService.getLatitude(),
-                mLocationService.getLongitude(),
+                latitude,
+                longitude,
                 mPrefs.getUserSignInToken()
         );
         call.enqueue(new Callback<AddNcrResponse>() {
             @Override
-            public void onResponse(Call<AddNcrResponse> call, Response<AddNcrResponse> response) {
+            public void onResponse(@NonNull Call<AddNcrResponse> call, @NonNull Response<AddNcrResponse> response) {
                 Log.d(TAG, "postNcrRegister : onResponse : " + response.code());
                 if (response.isSuccessful()){
                     Log.d(TAG, "postNcrRegister : onResponse : successful");
@@ -344,8 +331,9 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             @Override
-            public void onFailure(Call<AddNcrResponse> call, Throwable t) {
-                Log.d(TAG, "postNcrRegister : onFailure");
+            public void onFailure(@NonNull Call<AddNcrResponse> call, @NonNull Throwable t) {
+                Log.d(TAG, "postNcrRegister : onFailure : " + t.getMessage());
+                t.printStackTrace();
             }
         });
     }
@@ -361,8 +349,8 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
             Log.d(TAG, "getLocation : permitted");
             Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if (location != null) {
-                double latti = location.getLatitude();
-                double longi = location.getLongitude();
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
             }
         }
     }

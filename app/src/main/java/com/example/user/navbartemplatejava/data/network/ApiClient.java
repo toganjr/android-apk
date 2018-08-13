@@ -11,7 +11,7 @@ public class ApiClient {
 
     public static Retrofit getRetrofit(){
         if (retrofit == null){
-            String BASE_URL = "http://192.168.137.1:8000/";
+            String BASE_URL = "http://192.168.0.4:8000/";
             return retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
