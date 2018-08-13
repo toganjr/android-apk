@@ -48,7 +48,8 @@ public class regNCRActivity extends AppCompatActivity {
         mNcrRegInterface = ApiClient.getRetrofit().create(NcrRegInterface.class);
         mPreferencesHelper = ((InkaApp) getApplication()).getPrefs();
         btnTambahNcr = findViewById(R.id.btn_tambah_ncr);
-//        createExampleList();
+
+
 
 
     }

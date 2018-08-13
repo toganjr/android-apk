@@ -8,6 +8,9 @@
     <string name="action_logout">Logout</string>
     <string name="line_1">Line 1</string>
     <string name="line_2">Line 2</string>
+    <string name="nip">Nip</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Login</string>
 
     <string name="no_reg_ncr">No NCR</string>
     <string name="nama_proses">Nama Proses</string>

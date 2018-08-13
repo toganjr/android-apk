@@ -28,15 +28,9 @@ public class ViewItemNcrReg extends AppCompatActivity {
         mUnit = findViewById(R.id.getUnit);
         mKodeProjek = findViewById(R.id.getKodeProjek);
 
-        mNoRegNcrTxt.setText(getIntent().getStringExtra("xxx"));
-        mNamaProsesTxt.setText(getIntent().getStringExtra("yyy"));
-        //get Data from server via Adapter
-//
-//        mNoRegNcrTxt.setText(getIntent().getStringExtra("No Registration NCR"));
-//        mNamaProsesTxt.setText(getIntent().getStringExtra("Nama Proses"));
-//        mNamaInspector.setText(getIntent().getStringExtra("Nama Inspector"));
-//        mUnit.setText(getIntent().getStringExtra("Unit"));
-//        mKodeProjek.setText(getIntent().getStringExtra("Kode Projek"));
+
+        mNoRegNcrTxt.setText(getIntent().getStringExtra("No Registration NCR"));
+        mNamaProsesTxt.setText(getIntent().getStringExtra("Nama Proses"));
 
 
 
