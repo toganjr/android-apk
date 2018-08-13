@@ -31,17 +31,29 @@ import com.example.user.navbartemplatejava.data.DispositionInspector;
 import com.example.user.navbartemplatejava.data.DocRefDivision;
 import com.example.user.navbartemplatejava.data.IncompatibilityCategory;
 import com.example.user.navbartemplatejava.data.MasterProject;
+import com.example.user.navbartemplatejava.data.network.ApiClient;
+import com.example.user.navbartemplatejava.data.network.NcrRegInterface;
 import com.example.user.navbartemplatejava.data.network.response.AddFormResponse;
+import com.example.user.navbartemplatejava.data.network.response.AddNcrResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
 import com.example.user.navbartemplatejava.service.LocationService;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddNcrActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -148,6 +160,7 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         Log.d(TAG, "onStart");
         setSpinners();
         if (!mLocationServiceBound){
+            Log.d(TAG, "onStart : bindService : "+mLocationServiceBound);
             bindService(mLocationServiceIntent, mLocationServiceConnection, Context.BIND_AUTO_CREATE);
         }
         // Checking if service of feature asset has bound or not
@@ -202,82 +215,89 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private boolean validatenoPO() {
-        Log.d(TAG, "validatenoPO");
         String noPO = inputnoPO2.getText().toString().trim();
 
         if (noPO.isEmpty()) {
             inputnoPO2.setError("tidak boleh kosong");
+            Log.d(TAG, "validatenoPO : false");
             return false;
         } else if (noPO.length() != 8) {
             inputnoPO2.setError("harus 8 digit");
+            Log.d(TAG, "validatenoPO : false");
             return false;
         } else {
             inputnoPO2.setError(null);
+            Log.d(TAG, "validatenoPO : true");
             return true;
         }
     }
 
     private boolean validatePIC() {
-        Log.d(TAG, "validatePIC");
         String PIC = inputPIC.getText().toString().trim();
 
         if (PIC.isEmpty()) {
             inputPIC.setError("tidak boleh kosong");
+            Log.d(TAG, "validatePIC : false");
             return false;
         } else {
             inputPIC.setError(null);
+            Log.d(TAG, "validatePIC : true");
             return true;
         }
     }
 
     private boolean validatevendor() {
-        Log.d(TAG, "validatevendor");
         String vendor = inputvendor.getText().toString().trim();
 
         if (vendor.isEmpty()) {
             inputvendor.setError("tidak boleh kosong");
+            Log.d(TAG, "validatevendor : false");
             return false;
         } else {
             inputvendor.setError(null);
+            Log.d(TAG, "validatevendor : true");
             return true;
         }
     }
 
     private boolean validateproduk() {
-        Log.d(TAG, "validateproduk");
         String produk = inputproduk.getText().toString().trim();
 
         if (produk.isEmpty()) {
             inputproduk.setError("tidak boleh kosong");
+            Log.d(TAG, "validateproduk : false");
             return false;
         } else {
             inputproduk.setError(null);
+            Log.d(TAG, "validateproduk : true");
             return true;
         }
     }
 
     private boolean validatetanggal_penyelesaian() {
-        Log.d(TAG, "validatetanggal_penyelesaian");
         String tanggal_penyelesaian = inputtanggal_penyelesaian.getText().toString().trim();
 
         if (tanggal_penyelesaian.isEmpty()) {
             inputtanggal_penyelesaian.setError("tidak boleh kosong");
+            Log.d(TAG, "validatetanggal_penyelesaian : false");
             return false;
         } else {
             inputtanggal_penyelesaian.setError(null);
+            Log.d(TAG, "validatetanggal_penyelesaian : true");
             return true;
         }
     }
 
     private boolean validatereport() {
-        Log.d(TAG, "validatereport");
         String report = inputreport.getText().toString().trim();
 
         if (report.isEmpty()) {
             inputreport.setError("tidak boleh kosong");
+            Log.d(TAG, "validatereport : false");
             return false;
         } else {
             inputreport.setError(null);
+            Log.d(TAG, "validatereport : true");
             return true;
         }
     }
@@ -286,41 +306,49 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onClick(View v) {
             Log.d(TAG, "register : onClick");
-            if (!validatenoPO() | !validatePIC() | !validateproduk() | !validatereport() | !validatetanggal_penyelesaian() | !validatevendor()) {
-//                postNcrRegister();
+            if (validatenoPO() | validatePIC() | validateproduk() |
+                    validatereport() | validatetanggal_penyelesaian() | validatevendor()) {
+                postNcrRegister();
             }
         }
     }
 
-//    public void postNcrRegister(){
-//        Call<AddNcrResponse> call = ApiClient.getRetrofit().create(NcrRegInterface.class).addNcr(
-//                inputproduk.getText().toString(),
-//                ((MasterProject) mProjectIdSpinner.getSelectedItem()).getIdProject(),
-//                inputvendor.getText().toString(),
-//                ((DocRefDivision) mNoPoSpinner.getSelectedItem()).getId(),
-//                inputnoPO2.getText().toString(),
-//                inputreport.getText().toString(),
-//                ((IncompatibilityCategory) mIncomSpinner.getSelectedItem()).getId(),
-//                inputPIC.getText().toString(),
-//                //foto
-//                ((DispositionInspector) mDisposSpinner.getSelectedItem()).getId(),
-//                tanggalPenyelesaian,
-//                mLocationService.getLatitude(),
-//                mLocationService.getLongitude(),
-//                mPrefs.getUserSignInToken()
-//        );
-//        call.enqueue(new Callback<AddNcrResponse>() {
-//            @Override
-//            public void onResponse(Call<AddNcrResponse> call, Response<AddNcrResponse> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<AddNcrResponse> call, Throwable t) {
-//
-//            }
-//        });
-//    }
+    public void postNcrRegister(){
+        Log.d(TAG, "postNcrRegister");
+        File file = new File(filePath.getPath());
+        RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
+        MultipartBody.Part image = MultipartBody.Part.createFormData("file_bukti[]", file.getName(), reqFile);
+        Call<AddNcrResponse> call = ApiClient.getRetrofit().create(NcrRegInterface.class).addNcr(
+                inputproduk.getText().toString(),
+                ((MasterProject) mProjectIdSpinner.getSelectedItem()).getIdProject(),
+                inputvendor.getText().toString(),
+                ((DocRefDivision) mNoPoSpinner.getSelectedItem()).getId(),
+                inputnoPO2.getText().toString(),
+                inputreport.getText().toString(),
+                ((IncompatibilityCategory) mIncomSpinner.getSelectedItem()).getId(),
+                inputPIC.getText().toString(),
+                image,
+                ((DispositionInspector) mDisposSpinner.getSelectedItem()).getId(),
+                tanggalPenyelesaian,
+                mLocationService.getLatitude(),
+                mLocationService.getLongitude(),
+                mPrefs.getUserSignInToken()
+        );
+        call.enqueue(new Callback<AddNcrResponse>() {
+            @Override
+            public void onResponse(Call<AddNcrResponse> call, Response<AddNcrResponse> response) {
+                Log.d(TAG, "postNcrRegister : onResponse : " + response.code());
+                if (response.isSuccessful()){
+                    Log.d(TAG, "postNcrRegister : onResponse : successful");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddNcrResponse> call, Throwable t) {
+                Log.d(TAG, "postNcrRegister : onFailure");
+            }
+        });
+    }
 
     public void getLocation() {
         Log.d(TAG, "getLocation");

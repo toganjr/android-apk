@@ -8,8 +8,10 @@ import com.example.user.navbartemplatejava.data.network.response.UpdateNcrRespon
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -17,6 +19,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Path;
 
 public interface NcrRegInterface {
@@ -39,7 +42,7 @@ public interface NcrRegInterface {
                                 @Part("description_incompatibility") String description_incompatibility,
                                 @Part("incompatibility_category_id") Integer incompatibility_category_id,
                                 @Part("person_in_charge") String person_in_charge,
-                                @Part List<MultipartBody.Part> images,
+                                @Part MultipartBody.Part image,
                                 @Part("disposition_inspector_id") Integer disposition_inspector_id,
                                 @Part("completion_target") Date completion_target,
                                 @Part("lat") Double latitude,
