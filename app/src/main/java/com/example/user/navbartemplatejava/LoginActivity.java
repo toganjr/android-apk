@@ -43,14 +43,13 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onNextActivity();
-             //  login();
+               login();
             }
         });
     }
 
     public void login(){
-        Log.d(TAG, "activity_login");
+        Log.d(TAG, "login");
         if (mUsername.getText().toString().isEmpty() || mPassword.getText().toString().isEmpty()){
             Toast.makeText(this, "Please complete the form", Toast.LENGTH_SHORT).show();
         }
@@ -60,23 +59,21 @@ public class LoginActivity extends AppCompatActivity {
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
-                Log.d(TAG, "activity_login : onResponse" );
+                Log.d(TAG, "login : onResponse" );
                 if (response.isSuccessful()){
-                  mPrefs.setUserIsSignIn(true);
-                   mPrefs.setUserSignIn(response.body().getUser());
+                    mPrefs.setUserIsSignIn(true);
+                    mPrefs.setUserSignIn(response.body().getUser());
                     mPrefs.setUserSignInToken(response.body().getToken());
-                    Toast.makeText(LoginActivity.this, "Login Failed onRespon entut", Toast.LENGTH_SHORT).show();
-
-                      onNextActivity();
+                    Toast.makeText(LoginActivity.this, "Login Succeed", Toast.LENGTH_SHORT).show();
+                    onNextActivity();
                 }else{
-                    Toast.makeText(LoginActivity.this, "Login Failed onRespon", Toast.LENGTH_SHORT).show();
-
+                    Toast.makeText(LoginActivity.this, "Failed " + response.code() + " status", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-                Log.d(TAG, "activity_login : onFailure : " + t.getMessage());
+                Log.d(TAG, "login : onFailure : " + t.getMessage());
                 Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
 
             }
@@ -84,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onNextActivity(){
+        Log.d(TAG, "onNextActivity");
         startActivity(MenuActivity.startIntent(this));
         finish();
     }

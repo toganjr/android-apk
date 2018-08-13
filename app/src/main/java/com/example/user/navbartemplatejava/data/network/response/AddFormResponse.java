@@ -7,9 +7,10 @@ import com.example.user.navbartemplatejava.data.MasterProject;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AddFormResponse {
+public class AddFormResponse implements Serializable{
     @SerializedName("list_project")
     @Expose
     private List<MasterProject> masterProjects;

@@ -18,19 +18,11 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
     public static final String TAG = AdapterNcrRegistration.class.getSimpleName();
 
     private List <NcrRegistration> mListNcrDisplay;
-    private ArrayList<exampleItem> mExampleItems;
 
     //Constructor for NcrRegistration
     public AdapterNcrRegistration( List<NcrRegistration> ListNcrDisplay){
         mListNcrDisplay = ListNcrDisplay;
     }
-
-    //constructor for Example Item RecycleView
-    public AdapterNcrRegistration(ArrayList<exampleItem> ExampleItem){
-        mExampleItems = ExampleItem;
-    }
-
-
 
     @NonNull
     @Override
@@ -45,30 +37,15 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-//for Test Example RecycleView
-        holder.mNoNcr.setText(mExampleItems.get(position).getText1());
-        holder.mNamaProses.setText(mExampleItems.get(position).getText2());
-
+        holder.mNoNcr.setText(mListNcrDisplay.get(position).getNoRegNcr());
+        holder.mNamaProses.setText(mListNcrDisplay.get(position).getProcessName());
         holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
-
                 v.getContext().startActivity(intent);
             }
         });
-
-//for Get No NCR and Name Process
-//
-//        holder.mNoNcr.setText(mListNcrDisplay.get(position).getNoRegNcr());
-//        holder.mNamaProses.setText(mListNcrDisplay.get(position).getProcessName());
-//        holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
-//                v.getContext().startActivity(intent);
-//            }
-//        });
 
 
     }
@@ -76,8 +53,7 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
     @Override
     public int getItemCount() {
         Log.d(TAG,"Size Recycle : " );
-        //return mListNcrDisplay.size();
-        return mExampleItems.size();
+        return mListNcrDisplay.size();
     }
 
 
@@ -92,9 +68,6 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
             super(itemView);
             mNoNcr = itemView.findViewById(R.id.displayNoNcr);
             mNamaProses = itemView.findViewById(R.id.displayNamaProses);
-
-
-
 
         }
     }

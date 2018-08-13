@@ -1,7 +1,7 @@
 package com.example.user.navbartemplatejava;
 
-import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,11 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.user.navbartemplatejava.data.NcrRegistration;
 import com.example.user.navbartemplatejava.data.network.ApiClient;
 import com.example.user.navbartemplatejava.data.network.NcrRegInterface;
-import com.example.user.navbartemplatejava.data.network.response.AddNcrResponse;
+import com.example.user.navbartemplatejava.data.network.response.AddFormResponse;
 import com.example.user.navbartemplatejava.data.network.response.BrowseNcrResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
 
@@ -25,21 +26,19 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class regNCRActivity extends AppCompatActivity {
-
+    public static final String TAG = regNCRActivity.class.getSimpleName();
     NcrRegInterface mNcrRegInterface;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    public static regNCRActivity regNCRActivity;
     PreferencesHelper mPreferencesHelper;
-    private ArrayList <exampleItem> mExampleList;
     private Button btnTambahNcr;
-    private AdapterNcrRegistration mAdapterNcrRegistration;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_display_ncr_registration);
 
         mRecyclerView = findViewById(R.id.recyclerViewDisplayNcr);
@@ -48,70 +47,57 @@ public class regNCRActivity extends AppCompatActivity {
         mNcrRegInterface = ApiClient.getRetrofit().create(NcrRegInterface.class);
         mPreferencesHelper = ((InkaApp) getApplication()).getPrefs();
         btnTambahNcr = findViewById(R.id.btn_tambah_ncr);
-        createExampleList();
+//        createExampleList();
 
 
     }
-    //method for put item in RecycleView for example
-    public void createExampleList(){
-        mExampleList = new ArrayList<>();
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-        mExampleList.add(new exampleItem("XASD-123-12/XY/2018","PERUBAHAN PADA JADWAL HALUAN TUNDA"));
-    }
-
 
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart");
+        Call<BrowseNcrResponse> call = mNcrRegInterface.browseNcr(mPreferencesHelper.getUserSignInToken());
+        call.enqueue(new Callback<BrowseNcrResponse>() {
+            @Override
+            public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
+                Log.d(TAG, "onStart : onResponse");
+                if (response.isSuccessful()){
+                    Log.d(TAG, "onStart : onResponse : successful");
+                    mAdapter = new AdapterNcrRegistration(response.body().getNcr());
+                    mRecyclerView.setAdapter(mAdapter);
+                }
+            }
 
-        //for test Example RecycleView
-        mAdapter = new AdapterNcrRegistration(mExampleList);
-        mRecyclerView.setAdapter(mAdapter);
-
-
-//        Call<BrowseNcrResponse> call = mNcrRegInterface.browseNcr(mPreferencesHelper.getUserSignInToken());
-//
-//        call.enqueue(new Callback<BrowseNcrResponse>() {
-//            @Override
-//            public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
-//                List<NcrRegistration> ncrRegistrations = response.body().getNcr();
-//                mAdapter = new AdapterNcrRegistration(ncrRegistrations);
-//                mRecyclerView.setAdapter(mAdapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BrowseNcrResponse> call, Throwable t) {
-//                Log.e("Retrofit Get",t.toString());
-//            }
-//        });
-//
-//
-
+            @Override
+            public void onFailure(Call<BrowseNcrResponse> call, Throwable t) {
+                Log.d(TAG,"onStart : onFailure : " + t.toString());
+            }
+        });
     }
 
 
     public void onClickBtnTambahNcr(View view) {
+        Log.d(TAG, "onClickBtnTambahNcr");
+        Call<AddFormResponse> call = ApiClient.getRetrofit()
+                .create(NcrRegInterface.class)
+                .addNcrForm(mPreferencesHelper.getUserSignInToken());
+        call.enqueue(new Callback<AddFormResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<AddFormResponse> call, @NonNull Response<AddFormResponse> response) {
+                Log.d(TAG, "onClickBtnTambahNcr : onResponse");
+                if (response.isSuccessful()){
+                    Log.d(TAG, "onClickBtnTambahNcr : onResponse : successful");
+                    Intent intent = new Intent(regNCRActivity.this, AddNcrActivity.class);
+                    intent.putExtra("data", response.body());
+                    startActivity(intent);
+                }
+            }
 
-        Intent intent = new Intent(this,AddNcrActivity.class);
-        startActivity(intent);
-        finish();
+            @Override
+            public void onFailure(@NonNull Call<AddFormResponse> call, @NonNull Throwable t) {
+                Log.d(TAG, "onClickBtnTambahNcr : onFailure");
+                Toast.makeText(regNCRActivity.this, "Internet failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

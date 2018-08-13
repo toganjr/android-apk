@@ -18,4 +18,9 @@ public class DispositionInspector implements Serializable {
     public String getDisposisiDescription() {
         return disposisiDescription;
     }
+
+    @Override
+    public String toString() {
+        return disposisiDescription;
+    }
 }
