@@ -44,7 +44,7 @@ public interface NcrRegInterface {
                                 @Part("person_in_charge") String person_in_charge,
                                 @Part MultipartBody.Part image,
                                 @Part("disposition_inspector_id") Integer disposition_inspector_id,
-                                @Part("completion_target") Date completion_target,
+                                @Part("completion_target") String completion_target,
                                 @Part("lat") Double latitude,
                                 @Part("long") Double longitude,
                                 @Header("Authorization") String token);
@@ -62,7 +62,7 @@ public interface NcrRegInterface {
                                       @Part("person_in_charge") String person_in_charge,
                                       @Part List<MultipartBody.Part> images,
                                       @Part("disposition_inspector_id") Integer disposition_inspector_id,
-                                      @Part("completion_target") Date completion_target,
+                                      @Part("completion_target") String completion_target,
                                       @Part("lat") Double latitude,
                                       @Part("long") Double longitude,
                                       @Path("id") Integer id,

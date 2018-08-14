@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -36,9 +37,13 @@ import com.example.user.navbartemplatejava.data.network.response.AddFormResponse
 import com.example.user.navbartemplatejava.data.network.response.AddNcrResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
 import com.example.user.navbartemplatejava.util.NetworkUtils;
+import com.example.user.navbartemplatejava.util.RealPathUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.security.Permission;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,6 +66,7 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
 
     //access location
     static final int REQUEST_LOCATION = 1;
+    static final int REQUEST_READ = 2;
     LocationManager locationManager;
 
     //access camera
@@ -80,8 +86,9 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
     private Spinner mDisposSpinner;
     private Calendar dateTime = Calendar.getInstance();
     private DatePickerDialog mTanggalPenyelesaianDialog;
-    private Date tanggalPenyelesaian;
-    private Uri filePath;
+    private String tanggalPenyelesaian;
+    private Uri tempPath;
+    private String filePath;
     //register
     private Button registerncr;
     AddFormResponse formData;
@@ -136,12 +143,13 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
 
     protected void initDateTimePickerDialog(){
         Log.d(TAG, "initDateTimePickerDialog");
-        final SimpleDateFormat dateFormatterText = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());;
+        final SimpleDateFormat dateFormatterText = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        final SimpleDateFormat jsonFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         mTanggalPenyelesaianDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Log.d(TAG, "onDateSet");
                 dateTime.set(year, monthOfYear, dayOfMonth);
-                tanggalPenyelesaian = dateTime.getTime();
+                tanggalPenyelesaian = jsonFormat.format(dateTime.getTime());
                 inputtanggal_penyelesaian.setText(dateFormatterText.format(dateTime.getTime()));
             }
 
@@ -301,8 +309,13 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
     public void postNcrRegister(){
         Log.d(TAG, "postNcrRegister");
         getLocation();
-        File file = new File(filePath.toString());
-        Log.d(TAG, filePath.getPath());
+        Log.d(TAG, "filePath String : "+filePath);
+        File file = new File(filePath);
+        if (file.exists()){
+            Log.d(TAG, "postNcrRegister : file exists");
+        }else{
+            Log.d(TAG, "postNcrRegister : file doesnt exists");
+        }
         RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
         MultipartBody.Part image = MultipartBody.Part.createFormData("file_bukti[]", file.getName(), reqFile);
         Call<AddNcrResponse> call = ApiClient.getRetrofit().create(NcrRegInterface.class).addNcr(
@@ -325,8 +338,10 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onResponse(@NonNull Call<AddNcrResponse> call, @NonNull Response<AddNcrResponse> response) {
                 Log.d(TAG, "postNcrRegister : onResponse : " + response.code());
+                Log.d(TAG, "postNcrRegister : onResponse : " + response.message());
                 if (response.isSuccessful()){
                     Log.d(TAG, "postNcrRegister : onResponse : successful");
+                    finish();
                 }
             }
 
@@ -364,12 +379,16 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    public void onRequestPermissionResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         Log.d(TAG, "onRequestPermissionResult");
         switch (requestCode) {
             case REQUEST_LOCATION:
                 getLocation();
+                break;
+            case REQUEST_READ:
+                filePath = RealPathUtils.getRealPathFromURI_API19(this, tempPath);
                 break;
         }
     }
@@ -377,12 +396,20 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "onActivityResult");
         if (requestCode == CAN_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            filePath = data.getData();
+            tempPath = data.getData();
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Log.d(TAG, "onActivityResult : asking permission");
+                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.READ_EXTERNAL_STORAGE }, REQUEST_READ);
+            }else{
+                Log.d(TAG, "onActivityResult : permission granted");
+                filePath = RealPathUtils.getRealPathFromURI_API19(this, tempPath);
+            }
+            Log.d(TAG, "onActivityResult : convert bitmap");
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), tempPath);
                 imageView2.setImageBitmap(bitmap);
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
