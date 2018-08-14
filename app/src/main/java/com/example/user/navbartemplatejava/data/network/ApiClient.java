@@ -20,8 +20,8 @@ public class ApiClient {
 //                    .setLenient()
 //                    .registerTypeAdapter(Date.class, new GsonDateDeserializer())
 //                    .create();
-            Gson gson = new GsonBuilder().setLenient().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
-            String BASE_URL = "http://192.168.137.1:8000/";
+     Gson gson = new GsonBuilder().setLenient().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+     String BASE_URL = "http://192.168.137.1:8000/";
             return retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())

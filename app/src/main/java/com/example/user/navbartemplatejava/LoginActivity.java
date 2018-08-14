@@ -85,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onNextActivity(){
         Log.d(TAG, "onNextActivity");
+
         startActivity(MenuActivity.startIntent(this));
         finish();
     }
