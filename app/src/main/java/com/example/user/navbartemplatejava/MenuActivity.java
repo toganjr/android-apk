@@ -2,6 +2,8 @@ package com.example.user.navbartemplatejava;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.design.widget.NavigationView;
@@ -11,22 +13,24 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
- public static final String TAG = MenuActivity.class.getSimpleName();
+    public static final String TAG = MenuActivity.class.getSimpleName();
     private DrawerLayout mDrawer;
     private Toolbar mToolbar;
 
     private TextView mNama;
     private TextView mNip;
-
+    private ImageView mImage;
     private static String menufrom;
 
     PreferencesHelper mPrefs;
@@ -63,11 +67,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         mNama = header.findViewById(R.id.nama);
         mNip = header.findViewById(R.id.nipHeader);
+        mImage = header.findViewById(R.id.image);
 
         mNama.setText(mPrefs.getUserSignIn().getName());
         mNip.setText(mPrefs.getUserSignIn().getNip());
-
-
+        byte[] decodedString = Base64.decode(mPrefs.getUserSignIn().getPhoto(), Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        mImage.setImageBitmap(decodedByte);
     }
 
 
