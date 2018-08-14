@@ -26,6 +26,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.user.navbartemplatejava.data.DispositionInspector;
 import com.example.user.navbartemplatejava.data.DocRefDivision;
@@ -295,12 +296,21 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private boolean validateImage(){
+        if (filePath == null){
+            Toast.makeText(this, "Please choose image", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+
     class register implements Button.OnClickListener {
         @Override
         public void onClick(View v) {
             Log.d(TAG, "register : onClick");
             if (validatenoPO() | validatePIC() | validateproduk() |
-                    validatereport() | validatetanggal_penyelesaian() | validatevendor()) {
+                    validatereport() | validatetanggal_penyelesaian() |
+                    validatevendor() | validateImage()) {
                 postNcrRegister();
             }
         }
@@ -337,10 +347,11 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         call.enqueue(new Callback<AddNcrResponse>() {
             @Override
             public void onResponse(@NonNull Call<AddNcrResponse> call, @NonNull Response<AddNcrResponse> response) {
-                Log.d(TAG, "postNcrRegister : onResponse : " + response.code());
-                Log.d(TAG, "postNcrRegister : onResponse : " + response.message());
+                Log.d(TAG, "postNcrRegister : onResponse : " + response.code() + " " + response.message());
+                Toast.makeText(AddNcrActivity.this, response.code() + " "+ response.message(), Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()){
                     Log.d(TAG, "postNcrRegister : onResponse : successful");
+                    Toast.makeText(AddNcrActivity.this, response.code() + " "+ response.message(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
@@ -349,6 +360,7 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
             public void onFailure(@NonNull Call<AddNcrResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "postNcrRegister : onFailure : " + t.getMessage());
                 t.printStackTrace();
+                Toast.makeText(AddNcrActivity.this, "Internet failed", Toast.LENGTH_SHORT).show();
             }
         });
     }

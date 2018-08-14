@@ -71,9 +71,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         mNama.setText(mPrefs.getUserSignIn().getName());
         mNip.setText(mPrefs.getUserSignIn().getNip());
-        byte[] decodedString = Base64.decode(mPrefs.getUserSignIn().getPhoto(), Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        mImage.setImageBitmap(decodedByte);
+        if (mPrefs.getUserSignIn().getPhoto() != null) {
+            byte[] decodedString = Base64.decode(mPrefs.getUserSignIn().getPhoto(), Base64.DEFAULT);
+            Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            mImage.setImageBitmap(decodedByte);
+        }else{
+            mImage.setImageResource(R.drawable.ic_profile);
+        }
     }
 
 

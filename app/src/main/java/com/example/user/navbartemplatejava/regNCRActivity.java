@@ -62,9 +62,11 @@ public class regNCRActivity extends AppCompatActivity {
         call.enqueue(new Callback<BrowseNcrResponse>() {
             @Override
             public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
-                Log.d(TAG, "onStart : onResponse");
+                Log.d(TAG, "onStart : onResponse : "+response.code()+" "+response.message());
+                Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()){
                     Log.d(TAG, "onStart : onResponse : successful");
+                    Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                     mAdapter = new AdapterNcrRegistration(response.body().getNcr());
                     mRecyclerView.setAdapter(mAdapter);
                 }
@@ -73,6 +75,7 @@ public class regNCRActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<BrowseNcrResponse> call, Throwable t) {
                 Log.d(TAG,"onStart : onFailure : " + t.toString());
+                Toast.makeText(regNCRActivity.this, "Internet failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -86,9 +89,11 @@ public class regNCRActivity extends AppCompatActivity {
         call.enqueue(new Callback<AddFormResponse>() {
             @Override
             public void onResponse(@NonNull Call<AddFormResponse> call, @NonNull Response<AddFormResponse> response) {
-                Log.d(TAG, "onClickBtnTambahNcr : onResponse");
+                Log.d(TAG, "onClickBtnTambahNcr : onResponse : "+response.code() + " "+response.message());
+                Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()){
                     Log.d(TAG, "onClickBtnTambahNcr : onResponse : successful");
+                    Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(regNCRActivity.this, AddNcrActivity.class);
                     intent.putExtra("data", response.body());
                     startActivity(intent);
