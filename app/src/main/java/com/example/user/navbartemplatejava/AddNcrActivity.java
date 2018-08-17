@@ -13,6 +13,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -130,11 +131,11 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
             new AlertDialog.Builder(this)
                     .setCancelable(false)
                     .setMessage("Gps is disabled & No connection or connection missing")
-                    .setPositiveButton("Try Again", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Setting", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.dismiss();
-                            finish();
+                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                         }
                     })
                     .create()
@@ -308,9 +309,9 @@ public class AddNcrActivity extends AppCompatActivity implements View.OnClickLis
         @Override
         public void onClick(View v) {
             Log.d(TAG, "register : onClick");
-            if (validatenoPO() | validatePIC() | validateproduk() |
-                    validatereport() | validatetanggal_penyelesaian() |
-                    validatevendor() | validateImage()) {
+            if (validatenoPO() & validatePIC() & validateproduk() &
+                    validatereport() & validatetanggal_penyelesaian() &
+                    validatevendor() & validateImage()) {
                 postNcrRegister();
             }
         }

@@ -49,9 +49,6 @@ public class regNCRActivity extends AppCompatActivity {
         mPreferencesHelper = ((InkaApp) getApplication()).getPrefs();
         btnTambahNcr = findViewById(R.id.btn_tambah_ncr);
 
-
-
-
     }
 
     @Override
