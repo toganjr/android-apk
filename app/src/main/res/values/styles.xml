@@ -16,7 +16,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
+    <style name="TabText">
+        <item name="android:textColor">@color/White</item>
+    </style>
 
     <!--use item name="drawerArrowStyle" if you are using dark primaryColor in your app, else remove it-->
     <style name="MaterialDrawer.DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">

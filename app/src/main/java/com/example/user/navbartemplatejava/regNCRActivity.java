@@ -2,25 +2,20 @@ package com.example.user.navbartemplatejava;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.user.navbartemplatejava.data.NcrRegistration;
 import com.example.user.navbartemplatejava.data.network.ApiClient;
 import com.example.user.navbartemplatejava.data.network.NcrRegInterface;
 import com.example.user.navbartemplatejava.data.network.response.AddFormResponse;
-import com.example.user.navbartemplatejava.data.network.response.AddNcrResponse;
 import com.example.user.navbartemplatejava.data.network.response.BrowseNcrResponse;
 import com.example.user.navbartemplatejava.data.prefs.PreferencesHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +28,7 @@ public class regNCRActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     PreferencesHelper mPreferencesHelper;
-    private Button btnTambahNcr;
+    private FloatingActionButton btnTambahNcr;
 
 
     @Override
@@ -48,7 +43,6 @@ public class regNCRActivity extends AppCompatActivity {
         mNcrRegInterface = ApiClient.getRetrofit().create(NcrRegInterface.class);
         mPreferencesHelper = ((InkaApp) getApplication()).getPrefs();
         btnTambahNcr = findViewById(R.id.btn_tambah_ncr);
-
     }
 
     @Override
@@ -60,10 +54,8 @@ public class regNCRActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BrowseNcrResponse> call, Response<BrowseNcrResponse> response) {
                 Log.d(TAG, "onStart : onResponse : "+response.code()+" "+response.message());
-                Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()){
                     Log.d(TAG, "onStart : onResponse : successful");
-                    Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                     mAdapter = new AdapterNcrRegistration(response.body().getNcr());
                     mRecyclerView.setAdapter(mAdapter);
                 }
@@ -87,16 +79,23 @@ public class regNCRActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<AddFormResponse> call, @NonNull Response<AddFormResponse> response) {
                 Log.d(TAG, "onClickBtnTambahNcr : onResponse : "+response.code() + " "+response.message());
-                Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
                 if (response.isSuccessful()){
                     Log.d(TAG, "onClickBtnTambahNcr : onResponse : successful");
                     Toast.makeText(regNCRActivity.this, response.code() +" "+ response.message(), Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(regNCRActivity.this, AddNcrActivity.class);
-                    intent.putExtra("data", response.body());
-                    startActivity(intent);
+                    Log.d("UI CODE ", response.body().getUi_codes().getUi_code());
+                    String ui_code = response.body().getUi_codes().getUi_code();
+                    if ((ui_code.equals("INC")) || (ui_code.equals("SUB"))){
+                        Intent intent = new Intent(regNCRActivity.this, AddNcrINCSUBActivity.class);
+                        intent.putExtra("data", response.body());
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(regNCRActivity.this, AddNcrOtherActivity.class);
+                        intent.putExtra("data", response.body());
+                        startActivity(intent);
+                    }
+
                 }
             }
-
             @Override
             public void onFailure(@NonNull Call<AddFormResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "onClickBtnTambahNcr : onFailure");

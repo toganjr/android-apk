@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/HeaderUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:layout_marginBottom="20dp"
+        android:text="FORM UPLOAD FILE"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        />
+    <TextView
+        android:id="@+id/subPilih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih File : "
+        android:layout_below="@id/HeaderUpload"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <TextView
+        android:id="@+id/isiFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/subPilih"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <Button
+        android:id="@+id/btnSelectFile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Pilih"
+        android:layout_marginLeft="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/isiFile"
+        />
+    <Button
+        android:id="@+id/btnUploadfile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Upload"
+        android:layout_marginRight="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/isiFile"
+        />
+
+
+</RelativeLayout>

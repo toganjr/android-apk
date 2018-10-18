@@ -43,9 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-             //   onNextActivity();
-
                login();
             }
         });
@@ -67,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     mPrefs.setUserIsSignIn(true);
                     mPrefs.setUserSignIn(response.body().getUser());
                     mPrefs.setUserSignInToken(response.body().getToken());
+                    mPrefs.setUserID(response.body().getUser().getId());
+                    Log.d("LOGIN TOKEN ", response.body().getToken());
+                    Log.d("LOGIN ID ", String.valueOf(response.body().getUser().getId()));
+                    Log.d("LOGIN MPREF ID ", String.valueOf(mPrefs.getUserID()));
                     Toast.makeText(LoginActivity.this, "Login Succeed", Toast.LENGTH_SHORT).show();
                     onNextActivity();
                 }else{

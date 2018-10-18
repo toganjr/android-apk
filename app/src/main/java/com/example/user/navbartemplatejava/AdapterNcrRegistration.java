@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.user.navbartemplatejava.data.NcrRegistration;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,14 +38,53 @@ public class AdapterNcrRegistration extends RecyclerView.Adapter<AdapterNcrRegis
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
-        holder.mNoNcr.setText(mListNcrDisplay.get(position).getNoRegNcr());
-        holder.mNamaProses.setText(mListNcrDisplay.get(position).getProcessName());
+        final SimpleDateFormat Formatter = new SimpleDateFormat("dd-MM-yyyy");
+        holder.mNoNcr.setText("No. NCR : "+mListNcrDisplay.get(position).getNoRegNcr());
+        holder.mNamaProses.setText("Nama Proses : "+mListNcrDisplay.get(position).getProcessName());
         holder.mNoNcr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
-                        intent.putExtra("No Registration NCR",mListNcrDisplay.get(position).getNoRegNcr());
-                        intent.putExtra("Nama Proses",mListNcrDisplay.get(position).getProcessName());
+                intent.putExtra("No Registration NCR",mListNcrDisplay.get(position).getNoRegNcr());
+                intent.putExtra("Nama Proses",mListNcrDisplay.get(position).getProcessName());
+                intent.putExtra("Nama Tester",mListNcrDisplay.get(position).getUser().getName());
+                intent.putExtra("Nama Vendor",mListNcrDisplay.get(position).getVendorName());
+                intent.putExtra("Uraian Ket",mListNcrDisplay.get(position).getDescriptionIncompatibility());
+                intent.putExtra("Kategori Ket",mListNcrDisplay.get(position).getIncompatibilityCategoryId());
+                intent.putExtra("PIC",mListNcrDisplay.get(position).getPersonInCharge());
+                intent.putExtra("Disposisi Ins",mListNcrDisplay.get(position).getDispositionInspectorId());
+                intent.putExtra("Tanggal Terbit",Formatter.format(mListNcrDisplay.get(position).getPublishDate()));
+                intent.putExtra("Unit",mListNcrDisplay.get(position).getDivision().getDivisionName());
+                intent.putExtra("Nama Projek",mListNcrDisplay.get(position).getProject().getProjectDescription());
+                intent.putExtra("Projek ID",String.valueOf(mListNcrDisplay.get(position).getProject().getId()));
+                intent.putExtra("Projek Kode",mListNcrDisplay.get(position).getProject().getProjectCode());
+                intent.putExtra("position",mListNcrDisplay.get(position).getId());
+                intent.putExtra("Latitude",mListNcrDisplay.get(position).getLatitude());
+                intent.putExtra("Longitude",mListNcrDisplay.get(position).getLongitude());
+                v.getContext().startActivity(intent);
+            }
+        });
+        holder.mNamaProses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),ViewItemNcrReg.class);
+                intent.putExtra("No Registration NCR",mListNcrDisplay.get(position).getNoRegNcr());
+                intent.putExtra("No Registration NCR",mListNcrDisplay.get(position).getNoRegNcr());
+                intent.putExtra("Nama Proses",mListNcrDisplay.get(position).getProcessName());
+                intent.putExtra("Nama Tester",mListNcrDisplay.get(position).getUser().getName());
+                intent.putExtra("Nama Vendor",mListNcrDisplay.get(position).getVendorName());
+                intent.putExtra("Uraian Ket",mListNcrDisplay.get(position).getDescriptionIncompatibility());
+                intent.putExtra("Kategori Ket",String.valueOf(mListNcrDisplay.get(position).getIncompatibilityCategoryId()));
+                intent.putExtra("PIC",mListNcrDisplay.get(position).getPersonInCharge());
+                intent.putExtra("Disposisi Ins",String.valueOf(mListNcrDisplay.get(position).getDispositionInspectorId()));
+                intent.putExtra("Tanggal Terbit",Formatter.format(mListNcrDisplay.get(position).getPublishDate()));
+                intent.putExtra("Unit",mListNcrDisplay.get(position).getDivision().getDivisionName());
+                intent.putExtra("Nama Projek",mListNcrDisplay.get(position).getProject().getProjectDescription());
+                intent.putExtra("Projek ID",String.valueOf(mListNcrDisplay.get(position).getProject().getId()));
+                intent.putExtra("Projek Kode",mListNcrDisplay.get(position).getProject().getProjectCode());
+                intent.putExtra("position",mListNcrDisplay.get(position).getId());
+                intent.putExtra("Latitude",mListNcrDisplay.get(position).getLatitude());
+                intent.putExtra("Longitude",mListNcrDisplay.get(position).getLongitude());
                 v.getContext().startActivity(intent);
             }
         });

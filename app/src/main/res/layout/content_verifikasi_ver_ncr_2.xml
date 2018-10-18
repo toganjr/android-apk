@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlueGray100">
+
+    <RelativeLayout
+        android:id="@+id/LayoutFragment3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White">
+
+        <TextView
+            android:id="@+id/HeaderVerifNCR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:text="Verifikasi NCR Oleh Inspektor"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="50dp" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/HeaderVerifNCR"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:text="Hasil Verifikasi" />
+
+        <Spinner
+            android:id="@+id/isi31"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/HeaderVerifNCR"
+            android:layout_toRightOf="@+id/textView31"
+            />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView31"
+            android:layout_marginBottom="10sp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:text="Catatan Verifikasi" />
+
+        <EditText
+            android:id="@+id/isi32"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView32"
+            android:layout_weight="1"
+            android:inputType="textCapSentences|textMultiLine"
+            android:maxLength="2000"
+            android:maxLines="10" />
+
+        <Button
+            android:id="@+id/btnsimpanver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isi32"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:text="Simpan"
+            />
+
+    </RelativeLayout>
+
+</ScrollView>

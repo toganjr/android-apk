@@ -1,5 +1,6 @@
 package com.example.user.navbartemplatejava;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -115,6 +116,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             mPrefs.setUserSignInToken("");
             mPrefs.setUserSignIn(null);
             mPrefs.setUserIsSignIn(false);
+            mPrefs.setUserID(0);
             openLoginActivity();
         }
 
@@ -130,7 +132,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_profile) {
             menufrom = "profile";
-            Intent intent =  new Intent(this, MenuActivity.class);
+            Intent intent =  new Intent(this, EditProfileActivity.class);
             startActivityForResult(intent,0);
         } else if (id == R.id.nav_regNCR) {
             menufrom = "registration";
@@ -138,7 +140,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             startActivityForResult(intent,0);
         }  else if (id == R.id.nav_verNCR) {
             menufrom = "verification";
-            Intent intent =  new Intent(this, MenuActivity.class);
+            Intent intent =  new Intent(this, verNCRActivity.class);
             startActivityForResult(intent,0);
 
 
@@ -149,6 +151,22 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void onClickNCRReg (View view){
+        Intent intent =  new Intent(this, regNCRActivity.class);
+        startActivityForResult(intent,0);
+    }
+
+    public void onClickNCRVer (View view){
+        Intent intent =  new Intent(this, verNCRActivity.class);
+        startActivityForResult(intent,0);
+    }
+
+    public void onClickLogout (View view){
+        mPrefs.setUserSignInToken("");
+        mPrefs.setUserSignIn(null);
+        mPrefs.setUserIsSignIn(false);
+        openLoginActivity();
+    }
 
     public void openLoginActivity(){
         startActivity(LoginActivity.startIntent(this));

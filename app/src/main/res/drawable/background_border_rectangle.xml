@@ -10,7 +10,7 @@
         android:bottomRightRadius="0dp"
         android:topRightRadius="0dp" />
 
-    <stroke android:width="5px"
-            android:color="@color/colorBlack" />
+    <stroke android:width="2px"
+            android:color="@color/colorBlueGray100" />
 
 </shape>

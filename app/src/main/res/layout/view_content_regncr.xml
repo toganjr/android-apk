@@ -1,221 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="443dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="16dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="48dp">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="No NCR"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/getNoNcr"
-                    android:layout_width="211dp"
-                    android:layout_height="38dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Nama Inspector"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/getNamaInspector"
-                    android:text="Tester Beta 01"
-                    android:layout_width="211dp"
-                    android:layout_height="45dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Tanggal terbit"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="211dp"
-                    android:layout_height="45dp"
-                    android:text="12/09/2018"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="22dp">
-
-            <TableRow
-                android:layout_width="155dp"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="155dp"
-                    android:layout_height="match_parent"
-                    android:text="Nama Proses"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/getNamaProses"
-                    android:layout_width="211dp"
-                    android:layout_height="86dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Unit"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/getUnit"
-                    android:text="Unit Pengaduan layanan barang dan jasa"
-                    android:layout_width="201dp"
-                    android:layout_height="86dp"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Kode Proyek"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/getKodeProjek"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:text="NP1123"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-            </TableRow>
-        </TableRow>
-    </TableLayout>
-
-    <Button
-        android:id="@+id/button2"
+    <TextView
+        android:id="@+id/HeaderViewregncr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button3"
         android:layout_centerHorizontal="true"
-        android:text="Print" />
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="DATA NCR"
+        android:textStyle="bold"
+        android:textSize="30dp" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/button2"
-        android:layout_marginEnd="20dp"
-        android:text="Upload" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginBottom="30dp"
+        >
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="81dp"
-        android:layout_marginStart="22dp"
-        android:text="Edit" />
+        <LinearLayout
+            android:id="@+id/LinearVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/TVnoNCR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/HeaderViewregncr"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="No NCR"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
 
-</RelativeLayout>
+            <TextView
+                android:id="@+id/getNoNcr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVnoNCR"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVNamaIns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNoNcr"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Nama Inspector"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getNamaInspector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVNamaIns"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVTanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNamaInspector"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Tanggal terbit"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getTanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVTanggal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVNamaProses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getTanggal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Nama Proses"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getNamaProses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVNamaProses"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNamaProses"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Unit"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVUnit"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVKodeProyek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getUnit"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Kode Proyek"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getKodeProjek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVKodeProyek"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnregedit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/getKodeProjek"
+            android:gravity="center_horizontal"
+            android:onClick="onClickBtnEdit"
+            android:text="Edit" />
+
+        <Button
+            android:id="@+id/btnregprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Print" />
+
+        <Button
+            android:id="@+id/btnregupload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:onClick="onClickBtnUpload"
+            android:text="Upload" />
+
+    </LinearLayout>
+
+</LinearLayout>

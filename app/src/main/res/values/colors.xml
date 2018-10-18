@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="White">#ffffff</color>
 
 
     <!-- Red -->
@@ -27,6 +28,7 @@
     <color name="colorPink800">#AD1457</color>
     <color name="colorPink900">#880E4F</color>
     <!-- Blue -->
+    <color name="Blue">#2c90d9</color>
     <color name="colorBlue100">#BBDEFB</color>
     <color name="colorBlue200">#90CAF9</color>
     <color name="colorBlue300">#64B5F6</color>

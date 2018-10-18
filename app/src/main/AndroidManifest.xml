@@ -18,22 +18,29 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".MenuActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".regNCRActivity" />
-        <activity android:name=".AddNcrActivity"/>
+        <activity android:name=".AddNcrINCSUBActivity" />
+        <activity android:name=".AddNcrOtherActivity"/>
         <activity android:name=".ViewItemNcrReg" />
+        <activity android:name=".verNCRActivity" />
+        <activity android:name=".ViewItemNcrVer" />
+        <activity android:name=".UploadFileActivity"/>
+        <activity android:name=".EditNcrINCSUBActivity"/>
+        <activity android:name=".EditProfileActivity"/>
+        <activity android:name=".VerifikasiVerNCR2Activity"/>
         <activity android:name=".SplashActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".VerifikasiVerNCRActivity"/>
     </application>
 
 </manifest>

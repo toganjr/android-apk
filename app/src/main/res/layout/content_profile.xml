@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/HeaderUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="FORM UPLOAD FILE"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        />
+    <TextView
+        android:id="@+id/subPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password Baru"
+        android:layout_below="@id/HeaderUpload"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <EditText
+        android:id="@+id/isi_password"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_edit_text"
+        android:layout_below="@id/subPassword"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/colorPrimary" />
+    <TextView
+        android:id="@+id/subConfrmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password Baru"
+        android:layout_below="@id/isi_password"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <EditText
+        android:id="@+id/isi_confrmpassword"
+        style="@style/TextAppearance.AppCompat.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_edit_text"
+        android:layout_below="@id/subConfrmPassword"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:layout_marginBottom="15dp"
+        android:textColor="@color/colorPrimary" />
+    <TextView
+        android:id="@+id/subPilih"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Foto : "
+        android:layout_below="@id/isi_confrmpassword"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <TextView
+        android:id="@+id/isiFile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/subPilih"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"
+        android:layout_marginBottom="15dp"
+        />
+    <Button
+        android:id="@+id/btnSelectFile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Pilih"
+        android:layout_marginLeft="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/isiFile"
+        />
+    <Button
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="SAVE"
+        android:layout_marginRight="80dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/isiFile"
+        />
+
+
+</RelativeLayout>

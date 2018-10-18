@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.user.navbartemplatejava.data.User;
+import com.example.user.navbartemplatejava.data.UserInspectorCode;
 import com.google.gson.Gson;
 
 public class PreferencesHelper {
@@ -13,6 +14,7 @@ public class PreferencesHelper {
     private static final String PREFERENCES_KEY_USER_SIGN_IN = "PREFERENCES_KEY_USER_SIGN_IN";
     private static final String PREFERENCES_KEY_USER_IS_SIGN_IN = "PREFERENCES_KEY_USER_IS_SIGN_IN";
     private static final String PREFERENCES_KEY_USER_SIGN_IN_TOKEN = "PREFERENCES_KEY_USER_SIGN_IN_TOKEN";
+    private static final String PREFERENCES_KEY_USER_ID = "PREFERENCES_KEY_USER_ID";
 
     public PreferencesHelper(Context context) {
         this.mPrefs = context.getApplicationContext().getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -33,6 +35,14 @@ public class PreferencesHelper {
     public User getUserSignIn(){
         String user = mPrefs.getString(PREFERENCES_KEY_USER_SIGN_IN, "");
         return new Gson().fromJson(user, User.class);
+    }
+
+    public void setUserID(Integer userID){
+        mPrefs.edit().putInt(PREFERENCES_KEY_USER_ID,  userID).apply();
+    }
+
+    public Integer getUserID(){
+        return mPrefs.getInt(PREFERENCES_KEY_USER_ID, 0);
     }
 
     public boolean isSignIn(){

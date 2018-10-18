@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/HeaderViewregncr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="DATA NCR"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="430dp"
+        android:layout_marginBottom="30dp"
+        >
+
+        <LinearLayout
+            android:id="@+id/LinearVertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/TVnoNCR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/HeaderViewregncr"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="No NCR"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getNoNcr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVnoNCR"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVNamaIns"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNoNcr"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Nama Inspector"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getNamaInspector"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVNamaIns"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVTanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNamaInspector"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Tanggal terbit"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getTanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVTanggal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVNamaProses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getTanggal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Nama Proses"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getNamaProses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVNamaProses"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getNamaProses"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Unit"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getUnit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVUnit"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/TVKodeProyek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getUnit"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text="Kode Proyek"
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/getKodeProjek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/TVKodeProyek"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:text=":"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnverver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/getKodeProjek"
+            android:gravity="center_horizontal"
+            android:onClick="onClickBtnVer"
+            android:text="Verifikasi" />
+
+        <Button
+            android:id="@+id/btnveredit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Edit"
+            android:onClick="onClickBtnEdit2"
+            />
+
+        <Button
+            android:id="@+id/btnverprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="Print" />
+
+    </LinearLayout>
+
+</LinearLayout>

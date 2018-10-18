@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlueGray100"
+        >
+    <RelativeLayout
+        android:id="@+id/RelativeVer1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10sp"
+        android:background="@color/White"
+        >
+        <TextView
+            android:id="@+id/HeaderDataNCR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:text="Data NCR"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="50dp"
+            android:layout_marginBottom="10sp"/>
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="No. NCR"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@+id/HeaderDataNCR"
+            />
+
+        <TextView
+            android:id="@+id/isiTV11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=": "
+            android:layout_toRightOf="@+id/textView11"
+            android:layout_below="@+id/HeaderDataNCR"
+            android:layout_marginBottom="10sp"
+            />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV11"
+            android:text="No Reg Inspektor" />
+
+        <TextView
+            android:id="@+id/isiTV12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_below="@+id/isiTV11"
+            android:layout_marginBottom="10sp"
+            android:text=":" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:text="Tanggal Terbit"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@id/isiTV12"/>
+
+        <TextView
+            android:id="@+id/isiTV13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV12"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView13"
+            />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV13"
+            android:text="Nama Proses" />
+
+        <TextView
+            android:id="@+id/isiTV14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV13"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView14"
+            />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV14"
+            android:text="Nama/Kode Proyek" />
+
+        <TextView
+            android:id="@+id/isiTV15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV14"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView15"
+            />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV15"
+            android:text="Lokasi Ketidaksuaian" />
+
+        <TextView
+            android:id="@+id/isiTV16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV15"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView16"
+            />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV16"
+            android:text="Acuan Pemeriksaan" />
+
+        <TextView
+            android:id="@+id/isiTV17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV16"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView17"
+            />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV17"
+            android:text="Uraian Ketidaksuaian" />
+
+        <TextView
+            android:id="@+id/isiTV18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV17"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView18"
+            />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV18"
+            android:text="Disposisi Inspektor" />
+
+        <TextView
+            android:id="@+id/isiTV19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV18"
+            android:layout_marginBottom="10sp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView19"
+            />
+
+        <TextView
+            android:id="@+id/textView110"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10sp"
+            android:layout_below="@+id/isiTV19"
+            android:text="Target Penyelesaian" />
+
+        <TextView
+            android:id="@+id/isiTV110"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/isiTV19"
+            android:layout_marginBottom="20dp"
+            android:text=":"
+            android:layout_toRightOf="@+id/textView110"
+            />
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/RelativeVer2"
+            android:layout_marginTop="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RelativeVer1"
+            android:background="@color/White"
+            >
+
+            <TextView
+                android:id="@+id/HeaderDataTindakNCR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="10dp"
+                android:text="Data Tindak Lanjut NCR"
+                android:textSize="25dp"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="50dp"
+                android:layout_marginBottom="10sp"
+                android:layout_below="@+id/isiTV110"/>
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="No. NCR"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/HeaderDataTindakNCR"
+                />
+
+            <TextView
+                android:id="@+id/isiTV21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView21"
+                android:layout_below="@+id/HeaderDataTindakNCR"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="No Reg Inspektor"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/isiTV21"
+                />
+
+            <TextView
+                android:id="@+id/isiTV22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView22"
+                android:layout_below="@+id/isiTV21"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Uraian Akar Masalah"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/isiTV22"
+                />
+
+            <TextView
+                android:id="@+id/isiTV23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView23"
+                android:layout_below="@+id/isiTV22"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Tindakan Perbaikan"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/isiTV23"
+                />
+
+            <TextView
+                android:id="@+id/isiTV24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView24"
+                android:layout_below="@+id/isiTV23"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Tindakan Pencegahan"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/isiTV24"
+                />
+
+            <TextView
+                android:id="@+id/isiTV25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView25"
+                android:layout_below="@+id/isiTV24"
+                android:layout_marginBottom="10sp"
+                />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:text="Disposisi Unit Yang Dituju"
+                android:layout_marginLeft="13dp"
+                android:layout_marginBottom="10sp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@+id/isiTV25"
+                />
+
+            <TextView
+                android:id="@+id/isiTV26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:layout_toRightOf="@+id/textView26"
+                android:layout_below="@+id/isiTV25"
+                android:layout_marginBottom="20dp"
+                />
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verifikasi"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/RelativeVer2"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/colorGray100"
+            android:background="@color/colorBlue300"
+            android:onClick="onClickBtn1"
+            />
+    </RelativeLayout>
+</ScrollView>
